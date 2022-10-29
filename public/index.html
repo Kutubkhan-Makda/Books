@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>Books</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+	<script src="https://cdn.lordicon.com/xdjxvujz.js"></script>
+    <script>
+      /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId])
+/******/ 			return installedModules[moduleId].exports;
+
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			exports: {},
+/******/ 			id: moduleId,
+/******/ 			loaded: false
+/******/ 		};
+
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+
+/******/ 		// Flag the module as loaded
+/******/ 		module.loaded = true;
+
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+
+
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "/scripts/dist/";
+
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ function(module, exports, __webpack_require__) {
+
+	__webpack_require__(1);
+
+
+/***/ },
+/* 1 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _creditCardType = __webpack_require__(2);
+
+	var _creditCardType2 = _interopRequireDefault(_creditCardType);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	$(document).on('input change', '#input--cc input', function () {
+	  var ccNum = $(this).val();
+	  var ccType = (0, _creditCardType2.default)(ccNum);
+
+	  if (!ccNum.length || typeof ccType === "undefined" || !ccType.length) {
+	    $('#input--cc').removeClass().addClass('creditcard-icon');
+	    return;
+	  }
+
+	  var creditcardType = ccType[0].type;
+
+	  var ccTypes = {
+	    'american-express': 'AE',
+	    'master-card': 'MC',
+	    'visa': 'VI',
+	    'discover': 'DI'
+	  };
+
+	  $('#input--cc').removeClass().addClass('creditcard-icon').addClass('creditcard-icon--' + creditcardType); //set creditcard icon
+
+	  // select creditcard type
+	  $(".creditcard-type > select").val(ccTypes[creditcardType]);
+	  // set the creditcard type <select> to the value entered
+	});
+
+/***/ },
+/* 2 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	var types = {};
+	var VISA = 'visa';
+	var MASTERCARD = 'master-card';
+	var AMERICAN_EXPRESS = 'american-express';
+	var DINERS_CLUB = 'diners-club';
+	var DISCOVER = 'discover';
+	var JCB = 'jcb';
+	var UNIONPAY = 'unionpay';
+	var MAESTRO = 'maestro';
+	var CVV = 'CVV';
+	var CID = 'CID';
+	var CVC = 'CVC';
+	var CVN = 'CVN';
+	var testOrder = [
+	  VISA,
+	  MASTERCARD,
+	  AMERICAN_EXPRESS,
+	  DINERS_CLUB,
+	  DISCOVER,
+	  JCB,
+	  UNIONPAY,
+	  MAESTRO
+	];
+
+	function clone(x) {
+	  var prefixPattern, exactPattern, dupe;
+
+	  if (!x) { return null; }
+
+	  prefixPattern = x.prefixPattern.source;
+	  exactPattern = x.exactPattern.source;
+	  dupe = JSON.parse(JSON.stringify(x));
+	  dupe.prefixPattern = prefixPattern;
+	  dupe.exactPattern = exactPattern;
+
+	  return dupe;
+	}
+
+	types[VISA] = {
+	  niceType: 'Visa',
+	  type: VISA,
+	  prefixPattern: /^4$/,
+	  exactPattern: /^4\d*$/,
+	  gaps: [4, 8, 12],
+	  lengths: [16],
+	  code: {
+	    name: CVV,
+	    size: 3
+	  }
+	};
+
+	types[MASTERCARD] = {
+	  niceType: 'MasterCard',
+	  type: MASTERCARD,
+	  prefixPattern: /^(5|5[1-5]|2|22|222|222[1-9]|2[3-6]|27[0-1]|2720)$/,
+	  exactPattern: /^(5[1-5]|222[1-9]|2[3-6]|27[0-1]|2720)\d*$/,
+	  gaps: [4, 8, 12],
+	  lengths: [16],
+	  code: {
+	    name: CVC,
+	    size: 3
+	  }
+	};
+
+	types[AMERICAN_EXPRESS] = {
+	  niceType: 'American Express',
+	  type: AMERICAN_EXPRESS,
+	  prefixPattern: /^(3|34|37)$/,
+	  exactPattern: /^3[47]\d*$/,
+	  isAmex: true,
+	  gaps: [4, 10],
+	  lengths: [15],
+	  code: {
+	    name: CID,
+	    size: 4
+	  }
+	};
+
+	types[DINERS_CLUB] = {
+	  niceType: 'Diners Club',
+	  type: DINERS_CLUB,
+	  prefixPattern: /^(3|3[0689]|30[0-5])$/,
+	  exactPattern: /^3(0[0-5]|[689])\d*$/,
+	  gaps: [4, 10],
+	  lengths: [14],
+	  code: {
+	    name: CVV,
+	    size: 3
+	  }
+	};
+
+	types[DISCOVER] = {
+	  niceType: 'Discover',
+	  type: DISCOVER,
+	  prefixPattern: /^(6|60|601|6011|65|64|64[4-9])$/,
+	  exactPattern: /^(6011|65|64[4-9])\d*$/,
+	  gaps: [4, 8, 12],
+	  lengths: [16, 19],
+	  code: {
+	    name: CID,
+	    size: 3
+	  }
+	};
+
+	types[JCB] = {
+	  niceType: 'JCB',
+	  type: JCB,
+	  prefixPattern: /^(2|21|213|2131|1|18|180|1800|3|35)$/,
+	  exactPattern: /^(2131|1800|35)\d*$/,
+	  gaps: [4, 8, 12],
+	  lengths: [16],
+	  code: {
+	    name: CVV,
+	    size: 3
+	  }
+	};
+
+	types[UNIONPAY] = {
+	  niceType: 'UnionPay',
+	  type: UNIONPAY,
+	  prefixPattern: /^(6|62)$/,
+	  exactPattern: /^62\d*$/,
+	  gaps: [4, 8, 12],
+	  lengths: [16, 17, 18, 19],
+	  code: {
+	    name: CVN,
+	    size: 3
+	  }
+	};
+
+	types[MAESTRO] = {
+	  niceType: 'Maestro',
+	  type: MAESTRO,
+	  prefixPattern: /^(5|5[06-9]|6\d*)$/,
+	  exactPattern: /^5[06-9]\d*$/,
+	  gaps: [4, 8, 12],
+	  lengths: [12, 13, 14, 15, 16, 17, 18, 19],
+	  code: {
+	    name: CVC,
+	    size: 3
+	  }
+	};
+
+	function creditCardType(cardNumber) {
+	  var type, value, i;
+	  var prefixResults = [];
+	  var exactResults = [];
+
+	  if (!(typeof cardNumber === 'string' || cardNumber instanceof String)) {
+	    return [];
+	  }
+
+	  for (i = 0; i < testOrder.length; i++) {
+	    type = testOrder[i];
+	    value = types[type];
+
+	    if (cardNumber.length === 0) {
+	      prefixResults.push(clone(value));
+	      continue;
+	    }
+
+	    if (value.exactPattern.test(cardNumber)) {
+	      exactResults.push(clone(value));
+	    } else if (value.prefixPattern.test(cardNumber)) {
+	      prefixResults.push(clone(value));
+	    }
+	  }
+
+	  return exactResults.length ? exactResults : prefixResults;
+	}
+
+	creditCardType.getTypeInfo = function (type) {
+	  return clone(types[type]);
+	};
+
+	creditCardType.types = {
+	  VISA: VISA,
+	  MASTERCARD: MASTERCARD,
+	  AMERICAN_EXPRESS: AMERICAN_EXPRESS,
+	  DINERS_CLUB: DINERS_CLUB,
+	  DISCOVER: DISCOVER,
+	  JCB: JCB,
+	  UNIONPAY: UNIONPAY,
+	  MAESTRO: MAESTRO
+	};
+
+	module.exports = creditCardType;
+
+
+/***/ }
+/******/ ]);
+    </script>
+	<script>
+		$(document).ready(function() {
+		    var slider = $("#slider");
+		    var thumb = $("#thumb");
+		    var slidesPerPage = 4; //globaly define number of elements per page
+		    var syncedSecondary = true;
+		    slider.owlCarousel({
+		        items: 1,
+		        slideSpeed: 2000,
+		        nav: false,
+		        autoplay: false, 
+		        dots: false,
+		        loop: true,
+		        responsiveRefreshRate: 200
+		    }).on('changed.owl.carousel', syncPosition);
+		    thumb
+		        .on('initialized.owl.carousel', function() {
+		            thumb.find(".owl-item").eq(0).addClass("current");
+		        })
+		        .owlCarousel({
+		            items: slidesPerPage,
+		            dots: false,
+		            nav: true,
+		            item: 4,
+		            smartSpeed: 200,
+		            slideSpeed: 500,
+		            slideBy: slidesPerPage, 
+		        	navText: ['<svg width="18px" height="18px" viewBox="0 0 11 20"><path style="fill:none;stroke-width: 1px;stroke: #000;" d="M9.554,1.001l-8.607,8.607l8.607,8.606"/></svg>', '<svg width="25px" height="25px" viewBox="0 0 11 20" version="1.1"><path style="fill:none;stroke-width: 1px;stroke: #000;" d="M1.054,18.214l8.606,-8.606l-8.606,-8.607"/></svg>'],
+		            responsiveRefreshRate: 100
+		        }).on('changed.owl.carousel', syncPosition2);
+		    function syncPosition(el) {
+		        var count = el.item.count - 1;
+		        var current = Math.round(el.item.index - (el.item.count / 2) - .5);
+		        if (current < 0) {
+		            current = count;
+		        }
+		        if (current > count) {
+		            current = 0;
+		        }
+		        thumb
+		            .find(".owl-item")
+		            .removeClass("current")
+		            .eq(current)
+		            .addClass("current");
+		        var onscreen = thumb.find('.owl-item.active').length - 1;
+		        var start = thumb.find('.owl-item.active').first().index();
+		        var end = thumb.find('.owl-item.active').last().index();
+		        if (current > end) {
+		            thumb.data('owl.carousel').to(current, 100, true);
+		        }
+		        if (current < start) {
+		            thumb.data('owl.carousel').to(current - onscreen, 100, true);
+		        }
+		    }
+		    function syncPosition2(el) {
+		        if (syncedSecondary) {
+		            var number = el.item.index;
+		            slider.data('owl.carousel').to(number, 100, true);
+		        }
+		    }
+		    thumb.on("click", ".owl-item", function(e) {
+		        e.preventDefault();
+		        var number = $(this).index();
+		        slider.data('owl.carousel').to(number, 300, true);
+		    });
+
+
+            $(".qtyminus").on("click",function(){
+                var now = $(".qty").val();
+                if ($.isNumeric(now)){
+                    if (parseInt(now) -1> 0)
+                    { now--;}
+                    $(".qty").val(now);
+                }
+            })            
+            $(".qtyplus").on("click",function(){
+                var now = $(".qty").val();
+                if ($.isNumeric(now)){
+                    $(".qty").val(parseInt(now)+1);
+                }
+            });
+		});
+	</script>
+	<script>
+		$(document).ready(function() {
+	
+	/*============================================
+	Page Preloader
+	==============================================*/
+	
+	$(window).load(function(){
+		$('#page-loader').fadeOut(500,function(){
+			loadGmap();
+		});
+		
+	})	
+	
+	/*============================================
+	Header
+	==============================================*/
+	
+	$('#home').height($(window).height()+50);
+	
+	$.backstretch('assets/images/header-bg.jpg');
+	
+	$(window).scroll( function() {
+		var st = $(this).scrollTop(),
+			wh = $(window).height(),
+			sf = 1.2 - st/(10*wh);
+		
+		$('.backstretch img').css({ 
+			'transform' : 'scale('+sf+')', 
+			'-webkit-transform' : 'scale('+sf+')'
+		});
+		
+		$('#home .container').css({ 'opacity' : (1.4 - st/400) });
+		
+		if($(window).scrollTop() > ($(window).height()+50)){
+			$('.backstretch').hide();
+		}else{
+			$('.backstretch').show();
+		}
+		
+	});
+	
+	var st = $(this).scrollTop(),
+		wh = $(window).height(),
+		sf = 1.2 - st/(10*wh);
+
+	$('.backstretch img').css({ 
+		'transform' : 'scale('+sf+')', 
+		'-webkit-transform' : 'scale('+sf+')'
+	});
+
+	$('#home .container').css({ 'opacity' : (1.4 - st/400) });
+
+	
+	/*============================================
+	Navigation Functions
+	==============================================*/
+	if ($(window).scrollTop()< ($(window).height()-50)){
+		$('#main-nav').removeClass('scrolled');
+	}
+	else{
+		$('#main-nav').addClass('scrolled');    
+	}
+
+	$(window).scroll(function(){
+		if ($(window).scrollTop()< ($(window).height()-50)){
+			$('#main-nav').removeClass('scrolled');
+		}
+		else{
+			$('#main-nav').addClass('scrolled');    
+		}
+	});
+	
+	/*============================================
+	ScrollTo Links
+	==============================================*/
+	$('a.scrollto').click(function(e){
+		$('html,body').scrollTo(this.hash, this.hash, {gap:{y:-70}});
+		e.preventDefault();
+
+		if ($('.navbar-collapse').hasClass('in')){
+			$('.navbar-collapse').removeClass('in').addClass('collapse');
+		}
+	});
+
+	/*============================================
+	Skills
+	==============================================*/
+	$('.skills-item').each(function(){
+		var perc = $(this).find('.percent').data('percent');
+
+		$(this).data('height',perc);
+	})
+	
+	$('.touch .skills-item').each(function(){
+		$(this).css({'height':$(this).data('height')+'%'});
+	})
+	
+	$('.touch .skills-bars').css({'opacity':1});
+		
+	/*============================================
+	Project thumbs - Masonry
+	==============================================*/
+	$(window).load(function(){
+
+		$('#projects-container').css({visibility:'visible'});
+
+		$('#projects-container').masonry({
+			itemSelector: '.project-item:not(.filtered)',
+			//columnWidth:370,
+			isFitWidth: true,
+			isResizable: true,
+			isAnimated: !Modernizr.csstransitions,
+			gutterWidth: 25
+		});
+
+		scrollSpyRefresh();
+		waypointsRefresh();
+		
+	});
+	
+	/*============================================
+	Filter Projects
+	==============================================*/
+	$('#filter-works a').click(function(e){
+		e.preventDefault();
+		
+		if($('#project-preview').hasClass('open')){
+			closeProject();
+		}
+		
+		$('#filter-works li').removeClass('active');
+		$(this).parent('li').addClass('active');
+
+		var category = $(this).attr('data-filter');
+
+		$('.project-item').each(function(){
+			if($(this).is(category)){
+				$(this).removeClass('filtered');
+			}
+			else{
+				$(this).addClass('filtered');
+			}
+
+			$('#projects-container').masonry('reload');
+		});
+
+		scrollSpyRefresh();
+		waypointsRefresh();
+	});
+	
+	/*============================================
+	Project Preview
+	==============================================*/
+	$('.project-item').click(function(e){
+		e.preventDefault();
+
+		var elem = $(this),
+			title = elem.find('.project-title').text(),
+			descr = elem.find('.project-description').html(),
+			slidesHtml = '<ul class="slides">',
+			elemDataCont = elem.find('.project-description');
+
+			slides = elem.find('.project-description').data('images').split(',');
+
+		for (var i = 0; i < slides.length; ++i) {
+			slidesHtml = slidesHtml + '<li><img src='+slides[i]+' alt=""></li>';
+		}
+		
+		slidesHtml = slidesHtml + '</ul>';
+		
+		$('#project-title').text(title);
+		$('#project-content').html(descr);
+		$('#project-slider').html(slidesHtml);
+		
+		openProject();
+		
+	});
+
+	function openProject(){
+		
+		$('#project-preview').addClass('open');
+		$('.masonry-wrapper').animate({'opacity':0},300);
+		
+		setTimeout(function(){
+			$('#project-preview').slideDown();
+			$('.masonry-wrapper').slideUp();
+			
+			$('html,body').scrollTo(0,'#filter-works',
+				{
+					gap:{y:-20},
+					animation:{
+						duration:400
+					}
+			});
+			
+			$('#project-slider').flexslider({
+				prevText: '<i class="fa fa-angle-left"></i>',
+				nextText: '<i class="fa fa-angle-right"></i>',
+				animation: 'slide',
+				slideshowSpeed: 3000,
+				useCSS: true,
+				controlNav: true, 
+				pauseOnAction: false, 
+				pauseOnHover: true,
+				smoothHeight: false,
+				start: function(){
+					$(window).trigger('resize');
+					$('#project-preview').animate({'opacity':1},300);
+				}
+			});
+			
+		},300);
+		
+	}
+	
+	function closeProject(){
+	
+		$('#project-preview').removeClass('open');
+		$('#project-preview').animate({'opacity':0},300);
+		
+		setTimeout(function(){
+			$('.masonry-wrapper').slideDown();
+			$('#project-preview').slideUp();
+				
+			$('#project-slider').flexslider('destroy');
+			$('.masonry-wrapper').animate({'opacity':1},300);
+			
+			
+		},300);
+		
+		setTimeout(function(){
+			$('#projects-container').masonry('reload');
+		},500)
+	}
+	
+	$('.close-preview').click(function(){
+		closeProject();
+	})
+	
+	/*============================================
+	Twitter
+	==============================================*/
+	var tweetsLength = $('#twitter-slider').data('tweets-length'),
+		widgetID = $('#twitter-slider').data('widget-id');
+	
+	twitterFetcher.fetch(widgetID, 'twitter-slider', tweetsLength, true, false, true, '', false, handleTweets);
+
+	function handleTweets(tweets){
+	
+		var x = tweets.length,
+			n = 0,
+			tweetsHtml = '<ul class="slides">';
+			
+		while(n < x) {
+			tweetsHtml += '<li>' + tweets[n] + '</li>';
+			n++;
+		}
+		
+		tweetsHtml += '</ul>';
+		$('#twitter-slider').html(tweetsHtml);
+	
+		$('.twitter_reply_icon').html("<i class='fa fa-reply'></i>");
+		$('.twitter_retweet_icon').html("<i class='fa fa-retweet'></i>");
+		$('.twitter_fav_icon').html("<i class='fa fa-star'></i>");
+	  
+		$('#twitter-slider').flexslider({
+			prevText: '<i class="fa fa-angle-left"></i>',
+			nextText: '<i class="fa fa-angle-right"></i>',
+			slideshowSpeed: 5000,
+			useCSS: true,
+			controlNav: false, 
+			pauseOnAction: false, 
+			pauseOnHover: true,
+			smoothHeight: false
+		});
+	}
+	/*============================================
+	Contact Map
+	==============================================*/
+	function loadGmap(){
+	
+	if($('#gmap').length){
+	
+		var map;
+		var mapstyles = [ { "stylers": [ { "saturation": -100 } ] } ];
+		
+		var infoWindow = new google.maps.InfoWindow;
+		
+		var pointLatLng = new google.maps.LatLng(mapPoint.lat, mapPoint.lng);
+
+		var mapOptions = {
+			zoom: mapPoint.zoom,
+			center: pointLatLng,
+			zoomControl : true,
+			panControl : false,
+			streetViewControl : false,
+			mapTypeControl: false,
+			overviewMapControl: false,
+			scrollwheel: false,
+			styles: mapstyles
+		}
+		
+		map = new google.maps.Map(document.getElementById("gmap"), mapOptions);
+		
+		var marker = new google.maps.Marker({
+			position: pointLatLng, 
+			map: map, 
+			title:mapPoint.linkText,
+			icon: mapPoint.icon
+		});
+		
+		var mapLink = 'https://www.google.com/maps/preview?ll='+mapPoint.lat+','+mapPoint.lng+'&z=14&q='+mapPoint.mapAddress;
+		
+		var html = '<div class="infowin">'
+				+ mapPoint.infoText
+				+ '<a href="'+mapLink+'" target="_blank">'+mapPoint.linkText+'</a>'
+				+ '</div>';
+
+		google.maps.event.addListener(marker, 'mouseover', function() {
+			infoWindow.setContent(html);
+			infoWindow.open(map, marker);
+		});
+
+		google.maps.event.addListener(marker, 'click', function() {
+			window.open(mapLink,'_blank');
+		});
+		
+	}
+	}
+	/*============================================
+	Waypoints Animations
+	==============================================*/
+	$('#skills').waypoint(function(){
+	
+		$('.skills-item').each(function(){
+			$(this).css({'height':$(this).data('height')+'%'});
+		})
+		
+		$('.skills-bars').css({'opacity':1});
+		
+	},{offset:'40%'});
+	
+	$('.scrollimation').waypoint(function(){
+		$(this).addClass('in');
+	},{offset:'90%'});
+	
+	/*============================================
+	Resize Functions
+	==============================================*/
+	var thumbSize = $('.project-item').width();
+	
+	$(window).resize(function(){
+		$('#home').height($(window).height()+50);
+		
+		if($('.project-item').width() != thumbSize){
+		
+			$('#projects-container').masonry('reload');
+			thumbSize = $('.project-item').width();
+		}
+		
+		scrollSpyRefresh();
+		waypointsRefresh();
+	});
+	
+	/*============================================
+	Refresh scrollSpy function
+	==============================================*/
+	function scrollSpyRefresh(){
+		setTimeout(function(){
+			$('body').scrollspy('refresh');
+		},1000);
+	}
+	
+	/*============================================
+	Refresh waypoints function
+	==============================================*/
+	function waypointsRefresh(){
+		setTimeout(function(){
+			$.waypoints('refresh');
+		},1000);
+	}
+});
+
+$(document).ready(function() {
+	$('#contact-form').submit(function() {
+		
+		var buttonCopy = $('#contact-form button').html(),
+			errorMessage = $('#contact-form button').data('error-message'),
+			sendingMessage = $('#contact-form button').data('sending-message'),
+			okMessage = $('#contact-form button').data('ok-message'),
+			hasError = false;
+		
+		$('#contact-form .error-message').remove();
+		
+		$('.requiredField').each(function() {
+			if($.trim($(this).val()) == '') {
+				var errorText = $(this).data('error-empty');
+				$(this).parent().append('<span class="error-message" style="display:none;">'+errorText+'.</span>').find('.error-message').fadeIn('fast');
+				$(this).addClass('inputError');
+				hasError = true;
+			} else if($(this).is("input[type='email']") || $(this).attr('name')==='email') {
+				var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+				if(!emailReg.test($.trim($(this).val()))) {
+					var invalidEmail = $(this).data('error-invalid');
+					$(this).parent().append('<span class="error-message" style="display:none;">'+invalidEmail+'.</span>').find('.error-message').fadeIn('fast');
+					$(this).addClass('inputError');
+					hasError = true;
+				}
+			}
+		});
+		
+		if(hasError) {
+			$('#contact-form button').html('<i class="fa fa-times"></i>'+errorMessage);
+			setTimeout(function(){
+				$('#contact-form button').html(buttonCopy);
+			},2000);
+		}
+		else {
+			$('#contact-form button').html('<i class="fa fa-spinner fa-spin"></i>'+sendingMessage);
+			
+			var formInput = $(this).serialize();
+			$.post($(this).attr('action'),formInput, function(data){
+				$('#contact-form button').html('<i class="fa fa-check"></i>'+okMessage);
+				
+				$('#contact-form')[0].reset();
+				
+				setTimeout(function(){
+					$('#contact-form button').html(buttonCopy);
+				},2000);
+				
+			});
+		}
+		
+		return false;	
+	});
+});
+	</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="	sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
+  </body>
+</html>
