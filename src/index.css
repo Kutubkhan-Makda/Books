@@ -177,6 +177,8 @@ nav .right {
     background-color: transparent;
     color: black;
     line-height: 52px;
+    display: flex;
+    align-items: center;
   }
   .main-menu > li a:hover {
     background-color: #fa0 !important;
